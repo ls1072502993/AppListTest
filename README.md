@@ -1,6 +1,9 @@
 # AppListTest
 面试题-应用列表
 
+nodejs版本
+20.17.0
+
 下载依赖
 npm i  
 

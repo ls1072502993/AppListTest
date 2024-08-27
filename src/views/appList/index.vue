@@ -18,7 +18,6 @@
   </div>
   <!-- 热度最高免费App -->
   <div class="hot-box">
-    <Loading style="margin-top: 250px;" v-if="!loadingAll" size="24px" vertical>Loading...</Loading>
     <div class="item" v-for="(v, i) in hotList" :key="v.id.label">
       <div class="sort">{{ Number(i) + 1 }}</div>
       <img class="logo" :class="{ type_1: i % 2 != 0, type_2: i % 2 == 0 }" :src="v['im:image'][2].label" />
@@ -26,18 +25,20 @@
         <div class="name text-ellipsis">{{ v['im:name'].label }}</div>
         <div class="type">{{ v.category.attributes.label }}</div>
         <div class="star">
-          <Rate v-model="starValue" :size="15" color="#ffd21e" void-icon="star" void-color="#eee" />
+          <Rate v-model="starValue" :size="15" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
           <span>(1111)</span>
         </div>
       </div>
     </div>
+    <Empty description="No data" v-if="hotList.length == 0" />
+    <Loading style="margin-top: 250px;" v-if="!loadingAll" size="24px" vertical>Loading...</Loading>
   </div>
   <!-- End -->
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
-import { Rate, Loading } from 'vant';
+import { ref, onMounted } from 'vue'
+import { Rate, Loading, Empty } from 'vant';
 import * as fetch from '@/api/appList/index'
 import { _debounce } from '@/utils/utils'
 
@@ -59,7 +60,7 @@ onMounted(() => {
 const hotList = ref([])
 const allHotList = ref([])
 const loadingAll = ref(false)
-const starValue = ref(3)
+const starValue = ref(3.5)
 
 onMounted(() => {
   fetch.getTopfreeapplicationsList(100).then(res => {

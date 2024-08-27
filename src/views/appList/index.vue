@@ -18,6 +18,7 @@
   </div>
   <!-- 热度最高免费App -->
   <div class="hot-box">
+    <Loading style="margin-top: 250px;" v-if="!loadingAll" size="24px" vertical>Loading...</Loading>
     <div class="item" v-for="(v, i) in hotList" :key="v.id.label">
       <div class="sort">{{ Number(i) + 1 }}</div>
       <img class="logo" :class="{ type_1: i % 2 != 0, type_2: i % 2 == 0 }" :src="v['im:image'][2].label" />
@@ -36,7 +37,7 @@
 
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
-import { Rate } from 'vant';
+import { Rate, Loading } from 'vant';
 import * as fetch from '@/api/appList/index'
 import { _debounce } from '@/utils/utils'
 

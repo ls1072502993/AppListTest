@@ -1,4 +1,4 @@
-import './assets/main.scss'
+import '@/assets/style/main.scss'
 import 'amfe-flexible'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

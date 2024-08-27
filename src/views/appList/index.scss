@@ -6,6 +6,7 @@
     background: #fff;
     display: flex;
     align-items: center;
+    z-index: 99;
     justify-content: center;
 
     &::before {

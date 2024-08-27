@@ -33,12 +33,14 @@
     <Empty description="No data" v-if="hotList.length == 0" />
     <Loading style="margin-top: 250px;" v-if="!loadingAll" size="24px" vertical>Loading...</Loading>
   </div>
+  <!-- 回到顶部 -->
+  <BackTop/>
   <!-- End -->
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Rate, Loading, Empty } from 'vant';
+import { Rate, Loading, Empty, BackTop } from 'vant';
 import * as fetch from '@/api/appList/index'
 import { _debounce } from '@/utils/utils'
 
